@@ -18,7 +18,7 @@ code {
 }
 
 @theme inline {
-  --bg-home: url('src/assets/images/backgrounds/background.webp');
+  --bg-home: url('/assets/images/backgrounds/background.webp');
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
