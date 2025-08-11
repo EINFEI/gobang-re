@@ -1,0 +1,48 @@
+packages:
+  # specify a package in a direct subdir of the root
+  - 'src'
+  # all packages in direct subdirs of packages/
+  - 'packages/*'
+  # all packages in subdirs of components/
+  - 'components/**'
+  # exclude packages that are inside test directories
+  - '!**/test/**'
+catalog:
+  '@radix-ui/react-alert-dialog': ^1.1.14
+  '@radix-ui/react-label': ^2.1.7
+  '@radix-ui/react-slot': ^1.2.3
+  '@tailwindcss/vite': ^4.0.6
+  '@tanstack/eslint-config': ^0.3.0
+  '@tanstack/react-form': ^1.0.0
+  '@tanstack/react-router': ^1.130.2
+  '@tanstack/react-router-devtools': ^1.130.2
+  '@tanstack/router-plugin': ^1.121.2
+  '@testing-library/dom': ^10.4.0
+  '@testing-library/react': ^16.2.0
+  '@types/peerjs': ^0.0.30
+  '@types/react': ^19.0.8
+  '@types/react-dom': ^19.0.3
+  '@vitejs/plugin-react': ^4.3.4
+  class-variance-authority: ^0.7.1
+  clsx: ^2.1.1
+  fp-ts: ^2.16.10
+  immer: ^10.1.1
+  jsdom: ^26.0.0
+  konva: ^9.3.22
+  lucide-react: ^0.539.0
+  next-themes: ^0.4.6
+  peerjs: ^1.5.5
+  prettier: ^3.5.3
+  react: ^19.0.0
+  react-dom: ^19.0.0
+  react-konva: ^19.0.7
+  sonner: ^2.0.7
+  tailwind-merge: ^3.3.1
+  tailwindcss: ^4.0.6
+  tw-animate-css: ^1.3.6
+  typescript: ^5.7.2
+  vite: ^6.3.5
+  vitest: ^3.0.5
+  web-vitals: ^4.2.4
+  zod: ^3.24.2
+  zustand: ^5.0.7
