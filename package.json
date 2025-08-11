@@ -42,6 +42,7 @@
     "@tanstack/eslint-config": "catalog:",
     "@testing-library/dom": "catalog:",
     "@testing-library/react": "catalog:",
+    "@types/node": "^24.2.1",
     "@types/peerjs": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
