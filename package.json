@@ -56,6 +56,5 @@
     "vite": "catalog:",
     "vitest": "catalog:",
     "web-vitals": "catalog:"
-  },
-  "homepage": "https://github.com/EINFEI/gobang-re"
+  }
 }
