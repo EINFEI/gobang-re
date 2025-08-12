@@ -12,7 +12,7 @@ export default defineConfig({
     viteReact(),
     tailwindcss(),
   ],
-  base: '',
+  base: 'gobang-re',
   test: {
     globals: true,
     environment: 'jsdom',

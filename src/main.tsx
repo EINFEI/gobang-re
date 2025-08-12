@@ -1,12 +1,23 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { RouterProvider, createRouter, redirect, useNavigate } from '@tanstack/react-router'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 
 import './styles.css'
 import reportWebVitals from './reportWebVitals.ts'
+
+const DefaultNotFoundComponent = () => {
+  const navigate = useNavigate();
+
+  // Perform redirect on component mount
+  useEffect(() => {
+    navigate({ to: '/' });
+  }, [navigate]);
+
+  return null;
+};
 
 // Create a new router instance
 const router = createRouter({
@@ -16,6 +27,8 @@ const router = createRouter({
   scrollRestoration: true,
   defaultStructuralSharing: true,
   defaultPreloadStaleTime: 0,
+  basepath: "gobang-re",
+  defaultNotFoundComponent: DefaultNotFoundComponent,
 })
 
 // Register the router instance for type safety
