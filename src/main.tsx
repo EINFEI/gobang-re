@@ -1,33 +1,40 @@
+import {
+  RouterProvider,
+  createHashHistory,
+  createRouter,
+  useNavigate,
+} from '@tanstack/react-router'
 import { StrictMode, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider, createRouter, redirect, useNavigate } from '@tanstack/react-router'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 
-import './styles.css'
 import reportWebVitals from './reportWebVitals.ts'
 
 const DefaultNotFoundComponent = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   // Perform redirect on component mount
   useEffect(() => {
-    navigate({ to: '/' });
-  }, [navigate]);
+    navigate({ to: '/' })
+  }, [navigate])
 
-  return null;
-};
+  return null
+}
+import './styles.css'
 
 // Create a new router instance
+const hashHistory = createHashHistory()
 const router = createRouter({
   routeTree,
+  history: hashHistory,
   context: {},
   defaultPreload: 'intent',
   scrollRestoration: true,
   defaultStructuralSharing: true,
   defaultPreloadStaleTime: 0,
-  basepath: "gobang-re",
+  basepath: 'gobang-re',
   defaultNotFoundComponent: DefaultNotFoundComponent,
 })
 
