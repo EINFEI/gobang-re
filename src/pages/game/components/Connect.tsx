@@ -70,7 +70,7 @@ export function Connect({ connect, id, isPeerOpen }: IConnect) {
             variant="outline"
             onClick={() => {
               navigator.clipboard.writeText(
-                `${window.location.origin}/#/game?inviteID=${id}`,
+                `${window.location.href}?inviteID=${id}`,
               )
               toast.success('Copied to clipboard')
             }}
