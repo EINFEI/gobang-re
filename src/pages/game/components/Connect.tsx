@@ -7,13 +7,22 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useQueryState } from 'nuqs'
+import { useEffect } from 'react'
 
 const schema = z.object({
   peerId: z.string().min(1, 'Peer ID is required'),
 })
-export function Connect({ connect, id }: IConnect) {
+export function Connect({ connect, id, isPeerOpen }: IConnect) {
   const nav = useNavigate()
   const toHome = () => nav({ to: '/' })
+  const [inviteID] = useQueryState('inviteID')
+
+  useEffect(() => {
+    if (inviteID && connect && isPeerOpen) {
+      connect(inviteID)
+    }
+  }, [inviteID, connect, isPeerOpen])
 
   const form = useForm({
     defaultValues: {
@@ -32,8 +41,11 @@ export function Connect({ connect, id }: IConnect) {
   const Id = () =>
     id ? (
       <Input
+        onClick={() => {
+          navigator.clipboard.writeText(id)
+          toast.success('Copied to clipboard')
+        }}
         type="text"
-        id="id"
         placeholder="id"
         readOnly
         value={id}
@@ -57,11 +69,13 @@ export function Connect({ connect, id }: IConnect) {
           <Button
             variant="outline"
             onClick={() => {
-              navigator.clipboard.writeText(id)
+              navigator.clipboard.writeText(
+                `${window.location.origin}/#/game?inviteID=${id}`,
+              )
               toast.success('Copied to clipboard')
             }}
           >
-            Copy
+            Copy URL
           </Button>
         </div>
 
@@ -128,6 +142,7 @@ export function Connect({ connect, id }: IConnect) {
 interface IConnect {
   connect: (id: string) => void
   id: string
+  isPeerOpen: boolean
 }
 
 function FieldInfo({ field }: { field: AnyFieldApi }) {

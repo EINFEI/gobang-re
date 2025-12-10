@@ -29,8 +29,9 @@ function RouteComponent() {
       state.reset,
     ]),
   )
+
   const [isDialogShown, setIsDialogShown] = useState(false)
-  const { id, connect, isConnected, sendPiece, restart } = usePeer()
+  const { id, connect, isConnected, sendPiece, restart, isPeerOpen } = usePeer()
 
   useEffect(() => {
     reset()
@@ -40,8 +41,9 @@ function RouteComponent() {
     isWon ? setIsDialogShown(true) : setIsDialogShown(false)
   }, [isWon])
 
-  if (!isConnected) return <Connect id={id} connect={connect} />
-
+  if (!isConnected) {
+    return <Connect id={id} connect={connect} isPeerOpen={isPeerOpen} />
+  }
   return (
     <div>
       <AlertDialog open={isDialogShown} onOpenChange={setIsDialogShown}>

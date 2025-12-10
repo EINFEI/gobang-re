@@ -9,6 +9,7 @@ export function usePeer() {
   const connRef = useRef<DataConnection | undefined>(null)
   const [id, setId] = useState('')
   const [isConnected, setIsConnected] = useState(false)
+  const [isPeerOpen, setIsPeerOpen] = useState(false)
 
   const actionHandler = useHandleAction()
 
@@ -24,6 +25,7 @@ export function usePeer() {
 
     peer.current.on('open', (receivedId: string) => {
       setId(receivedId)
+      setIsPeerOpen(true)
     })
 
     peer.current.on('connection', (conn: DataConnection) => {
@@ -48,6 +50,7 @@ export function usePeer() {
   }, [])
 
   function connect(connectId: string) {
+    if (!isPeerOpen) return
     if (peer.current) {
       connRef.current = peer.current.connect(connectId)
       const conn = connRef.current
@@ -56,7 +59,6 @@ export function usePeer() {
         actionHandler.initialGame(conn)
       })
       conn.on('data', (data: any) => {
-        // actionHandler.placeOppoPiece(data);
         actionHandler.handleAction(data, conn)
       })
       conn.on('close', () => {
@@ -86,5 +88,5 @@ export function usePeer() {
     }
   }
 
-  return { id, connect, isConnected, sendPiece, restart }
+  return { id, connect, isConnected, sendPiece, restart, isPeerOpen }
 }

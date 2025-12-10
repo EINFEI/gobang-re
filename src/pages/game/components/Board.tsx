@@ -7,7 +7,6 @@ import { useShallow } from 'zustand/react/shallow'
 import { useGameStore } from '../state/useGameStore'
 import type { Stage as StageType } from 'konva/lib/Stage'
 import { useGetBoardSize } from '@/hooks/useGetBoardSize'
-
 import { drawBoard, getBoardParams } from '@/utils/boardUtils'
 
 export function Board({ sendPiece, restart }: IBoard) {
