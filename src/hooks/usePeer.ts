@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Peer } from 'peerjs'
-import { Action, useHandleAction } from './useHandleAction'
+import { useHandleAction } from './useHandleAction'
 import type { DataConnection } from 'peerjs'
+import { buildPlacePayload } from '@/types/messages'
 import { useGameStore } from '@/pages/game/state/useGameStore'
 
 export function usePeer() {
@@ -33,7 +34,7 @@ export function usePeer() {
       conn.on('open', () => {
         setIsConnected(true)
       })
-      conn.on('data', (data: any) => {
+      conn.on('data', (data: unknown) => {
         actionHandler.handleAction(data, conn)
       })
       conn.on('close', () => {
@@ -58,7 +59,7 @@ export function usePeer() {
         setIsConnected(true)
         actionHandler.initialGame(conn)
       })
-      conn.on('data', (data: any) => {
+      conn.on('data', (data: unknown) => {
         actionHandler.handleAction(data, conn)
       })
       conn.on('close', () => {
@@ -74,11 +75,7 @@ export function usePeer() {
     const conn = connRef.current
     setIsMyTurn(false)
     if (conn) {
-      conn.send({
-        action: Action.Place,
-        x,
-        y,
-      })
+      conn.send(buildPlacePayload(x, y))
     }
   }
 

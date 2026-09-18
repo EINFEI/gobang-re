@@ -1,12 +1,9 @@
 packages:
-  # specify a package in a direct subdir of the root
-  - 'src'
-  # all packages in direct subdirs of packages/
-  - 'packages/*'
-  # all packages in subdirs of components/
-  - 'components/**'
-  # exclude packages that are inside test directories
+  - src
+  - packages/*
+  - components/**
   - '!**/test/**'
+
 catalog:
   '@radix-ui/react-alert-dialog': ^1.1.14
   '@radix-ui/react-label': ^2.1.7
@@ -44,5 +41,5 @@ catalog:
   vite: ^6.3.5
   vitest: ^3.0.5
   web-vitals: ^4.2.4
-  zod: ^3.24.2
+  zod: 'catalog:'
   zustand: ^5.0.7
